@@ -5,7 +5,8 @@ const GRID_Z := 58
 const TEE_Z := 0.0
 const TERRAIN_MARGIN := 8.0
 const MAX_ATTEMPTS := 12
-const GROUND_FRICTION := 0.82
+const GROUND_FRICTION := 1.0
+const GROUND_BOUNCE := 0.18
 const HEIGHT_BAND_SPACING := 0.42
 const HEIGHT_BAND_WIDTH := 0.11
 const HEIGHT_BAND_STRENGTH := 0.10
@@ -237,7 +238,7 @@ func _build_terrain(params: Dictionary, noise: FastNoiseLite) -> Node3D:
 	body.name = "GroundBody"
 	var physics_material := PhysicsMaterial.new()
 	physics_material.friction = GROUND_FRICTION
-	physics_material.bounce = 0.0
+	physics_material.bounce = GROUND_BOUNCE
 	body.physics_material_override = physics_material
 
 	var shape := HeightMapShape3D.new()
@@ -289,22 +290,89 @@ func _add_triangle(st: SurfaceTool, faces: PackedVector3Array, a: Vector3, b: Ve
 		st.add_vertex(point)
 		faces.append(point)
 
-func _build_cup_marker(hole_position: Vector3) -> MeshInstance3D:
-	var material := StandardMaterial3D.new()
-	material.albedo_color = Color(0.04, 0.045, 0.04, 1.0)
-	material.roughness = 1.0
+func _build_cup_marker(hole_position: Vector3) -> Node3D:
+	var root := Node3D.new()
+	root.name = "CupMarker"
+	root.position = hole_position
 
-	var disk := MeshInstance3D.new()
-	disk.name = "Cup"
-	var mesh := CylinderMesh.new()
-	mesh.top_radius = 0.58
-	mesh.bottom_radius = 0.58
-	mesh.height = 0.035
-	mesh.radial_segments = 32
-	disk.mesh = mesh
-	disk.material_override = material
-	disk.position = hole_position + Vector3.UP * 0.02
-	return disk
+	var cup_material := StandardMaterial3D.new()
+	cup_material.albedo_color = Color(0.025, 0.026, 0.028, 1.0)
+	cup_material.roughness = 1.0
+
+	var cup := MeshInstance3D.new()
+	cup.name = "Cup"
+	var cup_mesh := CylinderMesh.new()
+	cup_mesh.top_radius = 0.58
+	cup_mesh.bottom_radius = 0.58
+	cup_mesh.height = 0.035
+	cup_mesh.radial_segments = 32
+	cup.mesh = cup_mesh
+	cup.material_override = cup_material
+	cup.position = Vector3.UP * 0.02
+	root.add_child(cup)
+
+	var ring_material := StandardMaterial3D.new()
+	ring_material.albedo_color = Color(1.0, 0.86, 0.48, 0.58)
+	ring_material.emission_enabled = true
+	ring_material.emission = Color(1.0, 0.78, 0.36, 1.0)
+	ring_material.emission_energy_multiplier = 0.55
+	ring_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	ring_material.blend_mode = BaseMaterial3D.BLEND_MODE_ADD
+	ring_material.cull_mode = BaseMaterial3D.CULL_DISABLED
+	ring_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+
+	var ring := MeshInstance3D.new()
+	ring.name = "CupRing"
+	ring.mesh = _make_ring_mesh(0.60, 0.76, 48)
+	ring.material_override = ring_material
+	ring.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	ring.position = Vector3.UP * 0.055
+	root.add_child(ring)
+
+	var beacon_material := StandardMaterial3D.new()
+	beacon_material.albedo_color = Color(1.0, 0.82, 0.42, 0.34)
+	beacon_material.emission_enabled = true
+	beacon_material.emission = Color(1.0, 0.74, 0.32, 1.0)
+	beacon_material.emission_energy_multiplier = 0.68
+	beacon_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	beacon_material.blend_mode = BaseMaterial3D.BLEND_MODE_ADD
+	beacon_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+
+	var beacon := MeshInstance3D.new()
+	beacon.name = "CupBeacon"
+	var beacon_mesh := CylinderMesh.new()
+	beacon_mesh.top_radius = 0.025
+	beacon_mesh.bottom_radius = 0.035
+	beacon_mesh.height = 1.8
+	beacon_mesh.radial_segments = 12
+	beacon.mesh = beacon_mesh
+	beacon.material_override = beacon_material
+	beacon.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	beacon.position = Vector3.UP * 0.94
+	root.add_child(beacon)
+
+	return root
+
+func _make_ring_mesh(inner_radius: float, outer_radius: float, segments: int) -> ArrayMesh:
+	var st := SurfaceTool.new()
+	st.begin(Mesh.PRIMITIVE_TRIANGLES)
+
+	for index in segments:
+		var angle_a := TAU * float(index) / float(segments)
+		var angle_b := TAU * float(index + 1) / float(segments)
+		var inner_a := Vector3(cos(angle_a) * inner_radius, 0.0, sin(angle_a) * inner_radius)
+		var outer_a := Vector3(cos(angle_a) * outer_radius, 0.0, sin(angle_a) * outer_radius)
+		var inner_b := Vector3(cos(angle_b) * inner_radius, 0.0, sin(angle_b) * inner_radius)
+		var outer_b := Vector3(cos(angle_b) * outer_radius, 0.0, sin(angle_b) * outer_radius)
+
+		st.add_vertex(outer_a)
+		st.add_vertex(inner_a)
+		st.add_vertex(outer_b)
+		st.add_vertex(outer_b)
+		st.add_vertex(inner_a)
+		st.add_vertex(inner_b)
+
+	return st.commit()
 
 func _height_at(x: float, z: float, params: Dictionary, noise: FastNoiseLite) -> float:
 	var t: float = clamp((-z) / float(params.holeLength), 0.0, 1.0)

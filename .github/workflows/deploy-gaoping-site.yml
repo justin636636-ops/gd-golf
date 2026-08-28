@@ -1,0 +1,49 @@
+name: Publish restored Gaoping site
+
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/deploy-gaoping-site.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  publish:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out restored site
+        uses: actions/checkout@v4
+        with:
+          ref: gaoping-site
+          fetch-depth: 0
+      - name: Import original Dropbox recordings
+        shell: bash
+        run: |
+          if [ ! -f audio/14.mp3 ]; then
+            mkdir -p audio
+            awk '/mkdir -p audio/{f=1;next} /git config user.name/{f=0} f && /curl --fail --location/' .github/workflows/pages.yml | sed 's/^            //' > /tmp/get-audio.sh
+            bash /tmp/get-audio.sh
+            test -s audio/01.mp3
+            test -s audio/14.mp3
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add audio
+            git commit -m 'Restore 14 original KISSr MP3 recordings'
+            git push origin HEAD:gaoping-site
+          fi
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

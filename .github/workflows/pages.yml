@@ -6,13 +6,13 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   deploy:
@@ -22,10 +22,33 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Restore original audio on first run
+        shell: bash
+        run: |
+          if [ ! -f audio/14.mp3 ]; then
+            mkdir -p audio
+            curl --fail --location 'https://ucaea671e6ca505730917658e1e4.dl.dropboxusercontent.com/cd/0/get/DHHyxFwbCvonWQjnKwtY7KNE4new05UFhtktwJh0o74YdMmQAz1-OxBqLruAFRt4q7nS1WqXoFy6oOOEF8vaTvhqdhxoXXkhwXokktDXrmgj73VI2697HkckD6EptBycaTV-_ScqnjQTDIIRAiC-xjg3/file?c_luid=ce6b9f05' -o audio/14.mp3
+            curl --fail --location 'https://uc8514752adcbff26cce89a42097.dl.dropboxusercontent.com/cd/0/get/DHH5PsAJ-Z0rEsBTX58K2tYab1-yDeo6eu-XICfgc1j5bZJPtT15pE9OHP8ecuHNciOMznNIXlw31Ao3D9doBWpnr2AF0B2eu-4osq2HZZPWArlBwhEpYlF6J01G7aUo7kOg16arhV1QLTiqSc_WW2-h/file?c_luid=ce6b9f05' -o audio/01.mp3
+            curl --fail --location 'https://uc06b3a0eda622ccf4306104fa9e.dl.dropboxusercontent.com/cd/0/get/DHGRMhd6GByM0ZiCfrVjPt9XwJ1UtCufnBjS0jeb8UNraRm_4nNHcNwrGI8ftX43MR93sLPQK77xsavIgCOTd-O2H55SjChnOXkBMHEcWpOSWdSKIrYlYCS3U5CroVwW88SfN1O42RCfDsl0be0tvbLe/file?c_luid=ce6b9f05' -o audio/02.mp3
+            curl --fail --location 'https://uc4de5554f0299719485c6512230.dl.dropboxusercontent.com/cd/0/get/DHHPXHP-U1zBwJHZintxcEOpluwkHNzzgJ99f0c8zo97OLawDawEwuDQyT-KDzKfHh0kFfV2Qvta_UhWtxHShQJgVCyiuzBjqE4gkt9KX0WnpxSxNXok-tk8ArTClAT7zU85yVW1rNfl9xROX0xjOpLa/file?c_luid=ce6b9f05' -o audio/03.mp3
+            curl --fail --location 'https://uc13fb9170f0667ba83d5ffb93c3.dl.dropboxusercontent.com/cd/0/get/DHEoXTO0PltIgtULHwKceXX25Sy36vMQvKj5Vi3WnfMVfTUBTRkssWSu1SQCEXKcPoV--T4HPIHmWUp-dGbzX5uP9-pHzIQobEgP5uRCH2JKMIDdojZD9Uip-pdujg9Eg6pMkCj7JwDDrq0uFJUL623i/file?c_luid=ce6b9f05' -o audio/04.mp3
+            curl --fail --location 'https://uc8c32a9344a0d7cbac7c9fda608.dl.dropboxusercontent.com/cd/0/get/DHGJQ4X5nS-7wZjoOXHSVqGWMS4KpX27FKZGlql6VNrbwNTtxAknzyE5wBH5DS8wvaM--DzX4-IZAD3A6WqcJDg9oKQU0v1Io3U2cgo2CABqOqw8THSPxW4aLS1QDsv8KfbNq4Rh4ZHrYYRJuAHn-Ugv/file?c_luid=ce6b9f05' -o audio/05.mp3
+            curl --fail --location 'https://uc33bbe301dcfe0ac654a3a56e22.dl.dropboxusercontent.com/cd/0/get/DHHtlHY-uZliQ_j0fUZtZvruyxU1E24JjwgXZ33JgXq5sJze7iEdIIVxLHBl--d9XZylGqDq6lBgyr5ejRLZH6OE9gCetO7u35yKbE6XICwrpKAqxB5wpStE2n_N3VMCnxhQarumEvBGxQg-u9ZtpfSd/file?c_luid=ce6b9f05' -o audio/06.mp3
+            curl --fail --location 'https://uc964d7f3a91a5771c40e3df4b60.dl.dropboxusercontent.com/cd/0/get/DHGol3vfhSXGZs5uZk3Mgolt7x20na4Ik1RWr9iIpBh6AeZ4MXYe2JdsDkBPouJm46yMguAiEkQCfVeCuWNQO52NjnIniKhaqr0vPV3llh1lMXdwkvXQqTJ-BLRlrbAHdA1LvTlBHIvnrH-_ZimztAsF/file?c_luid=ce6b9f05' -o audio/07.mp3
+            curl --fail --location 'https://uced3ee23060f25978541b0b21b5.dl.dropboxusercontent.com/cd/0/get/DHFrHlQipzF23HC1PZnDGTI5O_dx4UYAjowcGfjrjRsscpPC8p14iVuGJxQFA6KNoOAYEmCgfIGhcdnHzTpIhAkaKRG8FTmLRpR55DdUH0eX-lhVKM6tMreg5JFhbn_qLnSWERhE2ObsiaTwan7bL0G9/file?c_luid=ce6b9f05' -o audio/08.mp3
+            curl --fail --location 'https://ucca0c43662c4d83271138d5856d.dl.dropboxusercontent.com/cd/0/get/DHHeiMOqaKeQkCSPK6frarf-xq9RzkLOkrCaVgJJZgUGCz9SZv2M4a4GukQ68OY6nnojOfdrrv6w6UyCdr69jDZx9LstXSnju_hUA1YD60MdVuhPnHBKyghrgsNdhtaQf3zua0Aj-WYoKihXo0qkSX_D/file?c_luid=ce6b9f05' -o audio/09.mp3
+            curl --fail --location 'https://ucdaea66988f3a35d702d1a00bcd.dl.dropboxusercontent.com/cd/0/get/DHFWl9sdKLvu2w4x4XYLE3D0MIW5kr8HKvcKSOXuISGfgdrJRH9U7ZqvDSKjtMbSckIFEFuHfVFfr7UEOwpnPFTemF-TLyffZeTrxDxnLNdugeKc9lFvm1lj9CgunPbZdCyx_V_1WCxR4f1EOTcAVSrJ/file?c_luid=ce6b9f05' -o audio/10.mp3
+            curl --fail --location 'https://uc56356c830df38e6bb4845fdc2d.dl.dropboxusercontent.com/cd/0/get/DHEIqnhP5SJBrPQ8RAJnyWkyhghjn7bmAzqxbDtdTTaJCd090p8glxj3Npg-GDuv7eLU7zJW3qJpk-fV9UA_14JZanlFgLth3NYkwid1KoQKLVFdnUAZuZYZERJlZbo4-eoLxamRrUBQjVyYD1fOl8vC/file?c_luid=ce6b9f05' -o audio/11.mp3
+            curl --fail --location 'https://ucabacf1d366128ebc6f605fe0de.dl.dropboxusercontent.com/cd/0/get/DHEOaPVb9lg1N8kVl801KjSAc2jGCEc0NJ_gtP-rUzhSZV8p0HesIR4htTIj-5V9clmGJ2f6NkZOgprrtEt_3JNMeHSRAwNUiBoxSYoeWc-hICtA5hKsfK5PWm2fUeXLtow0Sai2OIZqIm_HVsec0Y-u/file?c_luid=ce6b9f05' -o audio/12.mp3
+            curl --fail --location 'https://uc14c979300a13a40a6200922ae0.dl.dropboxusercontent.com/cd/0/get/DHGpzWDbFF7oCXBsgzVWHYj7CYAr4e6yN_ez8oXGa0HNbHFCCCowNjMpGajtQM_t3Icp0UChrRHaFwnjpF77TEftQqci8SXHxVos_bqakvtcbiK0icVxUsfQVlNINfG62wWoMvkbNRc1FNCbM_jGmUEP/file?c_luid=ce6b9f05' -o audio/13.mp3
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add audio
+            git commit -m 'Restore original audio'
+            git push origin HEAD:gaoping-site
+          fi
       - name: Configure Pages
         uses: actions/configure-pages@v5
-        with:
-          enablement: true
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

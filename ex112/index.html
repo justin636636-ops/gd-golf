@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<!-- saved from url=(0106)file:///D:/Users/Dropbox/%E5%BA%94%E7%94%A8/KISSr/gaoping.kissr.com/Cover%20Template%20for%20Bootstrap.htm -->
+<html lang="zh-CN">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="https://v3.bootcss.com/favicon.ico">
+    <title>WELCOME TO MY GUITAR WEB</title>
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="https://v3.bootcss.com/examples/cover/cover.css" rel="stylesheet">
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="css/business-casual.css" rel="stylesheet">
+    <!-- Fonts -->
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="./index_files/ie-emulation-modes-warning.js"></script>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link href="css/1.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/_reset.css" />
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/css?family=Advent+Pro">
+    <style>
+    strong {
+        font-weight: 700;
+    }
+    
+    #wrapper {
+        width: 30em;
+        /* 480 */
+        height: 8.75em;
+        /* 140 */
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin: -4.375em 0 0 -15em;
+        /* 70 240 */
+    }
+    
+    h1 {
+        font-family: 'Advent Pro', sans-serif;
+        font-size: 1.688em;
+        /* 27 */
+        font-weight: 500;
+        text-align: center;
+        margin-bottom: 0.741em;
+        /* 20 */
+    }
+    
+    h1,
+    h1 a,
+    #copyright,
+    #copyright a {
+        color: #fff;
+        text-shadow: 1px 1px 0 rgba( 0, 0, 0, .1);
+    }
+    
+    h1 a,
+    #copyright a {
+        -webkit-transition: text-shadow .25s ease;
+        -moz-transition: text-shadow .25s ease;
+        -ms-transition: text-shadow .25s ease;
+        -o-transition: text-shadow .25s ease;
+        transition: text-shadow .25s ease;
+    }
+    
+    h1 a:hover,
+    h1 a:focus,
+    #copyright a:hover,
+    #copyright a:focus {
+        color: #fff;
+        text-shadow: 1px 1px 0 rgba( 0, 0, 0, .3);
+    }
+    
+    h1 em {
+        font-family: Baskerville, serif;
+    }
+    
+    #copyright {
+        font-size: 0.875em;
+        /* 14 */
+        text-align: center;
+        margin-top: 1.429em;
+        /* 20 */
+    }
+    
+    #copyright a {
+        font-weight: 700;
+    }
+    /*
+			PLAYER
+		*/
+    
+    .audioplayer {
+        height: 2.5em;
+        /* 40 */
+        color: #fff;
+        text-shadow: 1px 1px 0 #000;
+        border: 1px solid #222;
+        position: relative;
+        z-index: 1;
+        background: #333;
+    }
+    /* mini mode (fallback) */
+    
+    .audioplayer-mini {
+        width: 2.5em;
+        /* 40 */
+        margin: 0 auto;
+    }
+    /* player elements: play/pause and volume buttons, played/duration timers, progress bar of loaded/played */
+    
+    .audioplayer > div {
+        position: absolute;
+    }
+    /* play/pause button */
+    
+    .audioplayer-playpause {
+        width: 2.5em;
+        /* 40 */
+        height: 100%;
+        text-align: left;
+        text-indent: -9999px;
+        cursor: pointer;
+        z-index: 2;
+        top: 0;
+        left: 0;
+    }
+    
+    .audioplayer:not(.audioplayer-mini) .audioplayer-playpause {
+        border-right: 1px solid #555;
+        border-right-color: rgba( 255, 255, 255, .1);
+    }
+    
+    .audioplayer-mini .audioplayer-playpause {
+        width: 100%;
+    }
+    
+    .audioplayer-playpause:hover,
+    .audioplayer-playpause:focus {
+        background-color: #222;
+    }
+    
+    .audioplayer-playpause a {
+        display: block;
+    }
+    
+    .audioplayer-stopped .audioplayer-playpause a {
+        width: 0;
+        height: 0;
+        border: 0.5em solid transparent;
+        /* 8 */
+        border-right: none;
+        border-left-color: #fff;
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin: -0.5em 0 0 -0.25em;
+        /* 8 4 */
+    }
+    
+    .audioplayer-playing .audioplayer-playpause a {
+        width: 0.75em;
+        /* 12 */
+        height: 0.75em;
+        /* 12 */
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin: -0.375em 0 0 -0.375em;
+        /* 6 */
+    }
+    
+    .audioplayer-playing .audioplayer-playpause a:before,
+    .audioplayer-playing .audioplayer-playpause a:after {
+        width: 40%;
+        height: 100%;
+        background-color: #fff;
+        content: '';
+        position: absolute;
+        top: 0;
+    }
+    
+    .audioplayer-playing .audioplayer-playpause a:before {
+        left: 0;
+    }
+    
+    .audioplayer-playing .audioplayer-playpause a:after {
+        right: 0;
+    }
+    /* timers */
+    
+    .audioplayer-time {
+        width: 4.375em;
+        /* 70 */
+        height: 100%;
+        line-height: 2.375em;
+        /* 38 */
+        text-align: center;
+        z-index: 2;
+        top: 0;
+    }
+    
+    .audioplayer-time-current {
+        border-left: 1px solid #111;
+        border-left-color: rgba( 0, 0, 0, .25);
+        left: 2.5em;
+        /* 40 */
+    }
+    
+    .audioplayer-time-duration {
+        border-right: 1px solid #555;
+        border-right-color: rgba( 255, 255, 255, .1);
+        right: 2.5em;
+        /* 40 */
+    }
+    
+    .audioplayer-novolume .audioplayer-time-duration {
+        border-right: 0;
+        right: 0;
+    }
+    /* progress bar of loaded/played */
+    
+    .audioplayer-bar {
+        height: 0.875em;
+        /* 14 */
+        background-color: #222;
+        cursor: pointer;
+        z-index: 1;
+        top: 50%;
+        right: 6.875em;
+        /* 110 */
+        left: 6.875em;
+        /* 110 */
+        margin-top: -0.438em;
+        /* 7 */
+    }
+    
+    .audioplayer-novolume .audioplayer-bar {
+        right: 4.375em;
+        /* 70 */
+    }
+    
+    .audioplayer-bar div {
+        width: 0;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+    
+    .audioplayer-bar-loaded {
+        background-color: #333;
+        z-index: 1;
+    }
+    
+    .audioplayer-bar-played {
+        background: #007fd1;
+        z-index: 2;
+    }
+    /* volume button */
+    
+    .audioplayer-volume {
+        width: 2.5em;
+        /* 40 */
+        height: 100%;
+        border-left: 1px solid #111;
+        border-left-color: rgba( 0, 0, 0, .25);
+        text-align: left;
+        text-indent: -9999px;
+        cursor: pointer;
+        z-index: 2;
+        top: 0;
+        right: 0;
+    }
+    
+    .audioplayer-volume:hover,
+    .audioplayer-volume:focus {
+        background-color: #222;
+    }
+    
+    .audioplayer-volume-button {
+        width: 100%;
+        height: 100%;
+    }
+    
+    .audioplayer-volume-button a {
+        width: 0.313em;
+        /* 5 */
+        height: 0.375em;
+        /* 6 */
+        background-color: #fff;
+        display: block;
+        position: relative;
+        z-index: 1;
+        top: 40%;
+        left: 35%;
+    }
+    
+    .audioplayer-volume-button a:before,
+    .audioplayer-volume-button a:after {
+        content: '';
+        position: absolute;
+    }
+    
+    .audioplayer-volume-button a:before {
+        width: 0;
+        height: 0;
+        border: 0.5em solid transparent;
+        /* 8 */
+        border-left: none;
+        border-right-color: #fff;
+        z-index: 2;
+        top: 50%;
+        right: -0.25em;
+        margin-top: -0.5em;
+        /* 8 */
+    }
+    
+    .audioplayer:not(.audioplayer-muted) .audioplayer-volume-button a:after {
+        /* "volume" icon by Nicolas Gallagher, http://nicolasgallagher.com/pure-css-gui-icons */
+        width: 0.313em;
+        /* 5 */
+        height: 0.313em;
+        /* 5 */
+        border: 0.25em double #fff;
+        /* 4 */
+        border-width: 0.25em 0.25em 0 0;
+        /* 4 */
+        left: 0.563em;
+        /* 9 */
+        top: -0.063em;
+        /* 1 */
+        -webkit-border-radius: 0 0.938em 0 0;
+        /* 15 */
+        -moz-border-radius: 0 0.938em 0 0;
+        /* 15 */
+        border-radius: 0 0.938em 0 0;
+        /* 15 */
+        -webkit-transform: rotate( 45deg);
+        -moz-transform: rotate( 45deg);
+        -ms-transform: rotate( 45deg);
+        -o-transform: rotate( 45deg);
+        transform: rotate( 45deg);
+    }
+    /* volume dropdown */
+    
+    .audioplayer-volume-adjust {
+        height: 6.25em;
+        /* 100 */
+        cursor: default;
+        position: absolute;
+        left: 0;
+        right: -1px;
+        top: -9999px;
+        background: #333;
+    }
+    
+    .audioplayer-volume:not(:hover) .audioplayer-volume-adjust {
+        opacity: 0;
+    }
+    
+    .audioplayer-volume:hover .audioplayer-volume-adjust {
+        top: auto;
+        bottom: 100%;
+    }
+    
+    .audioplayer-volume-adjust > div {
+        width: 40%;
+        height: 80%;
+        background-color: #222;
+        cursor: pointer;
+        position: relative;
+        z-index: 1;
+        margin: 30% auto 0;
+    }
+    
+    .audioplayer-volume-adjust div div {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        background: #007fd1;
+    }
+    
+    .audioplayer-novolume .audioplayer-volume {
+        display: none;
+    }
+    /* CSS3 decorations */
+    
+    body {
+        -webkit-box-shadow: inset 0 0 18.75em rgba( 0, 0, 0, .5);
+        /* 300 */
+        -moz-box-shadow: inset 0 0 18.75em rgba( 0, 0, 0, 5);
+        /* 300 */
+        box-shadow: inset 0 0 18.75em rgba( 0, 0, 0, .5);
+        /* 300 */
+    }
+    
+    .audioplayer {
+        -webkit-box-shadow: inset 0 1px 0 rgba( 255, 255, 255, .15), 0 0 1.25em rgba( 0, 0, 0, .5);
+        /* 20 */
+        -moz-box-shadow: inset 0 1px 0 rgba( 255, 255, 255, .15), 0 0 1.25em rgba( 0, 0, 0, .5);
+        /* 20 */
+        box-shadow: inset 0 1px 0 rgba( 255, 255, 255, .15), 0 0 1.25em rgba( 0, 0, 0, .5);
+        /* 20 */
+    }
+    
+    .audioplayer-volume-adjust {
+        -webkit-box-shadow: -2px -2px 2px rgba( 0, 0, 0, .15), 2px -2px 2px rgba( 0, 0, 0, .15);
+        -moz-box-shadow: -2px -2px 2px rgba( 0, 0, 0, .15), 2px -2px 2px rgba( 0, 0, 0, .15);
+        box-shadow: -2px -2px 2px rgba( 0, 0, 0, .15), 2px -2px 2px rgba( 0, 0, 0, .15);
+    }
+    
+    .audioplayer-bar,
+    .audioplayer-volume-adjust > div {
+        -webkit-box-shadow: -1px -1px 0 rgba( 0, 0, 0, .5), 1px 1px 0 rgba( 255, 255, 255, .1);
+        -moz-box-shadow: -1px -1px 0 rgba( 0, 0, 0, .5), 1px 1px 0 rgba( 255, 255, 255, .1);
+        box-shadow: -1px -1px 0 rgba( 0, 0, 0, .5), 1px 1px 0 rgba( 255, 255, 255, .1);
+    }
+    
+    .audioplayer-volume-adjust div div,
+    .audioplayer-bar-played {
+        -webkit-box-shadow: inset 0 0 5px rgba( 255, 255, 255, .5);
+        -moz-box-shadow: inset 0 0 5px rgba( 255, 255, 255, .5);
+        box-shadow: inset 0 0 5px rgba( 255, 255, 255, .5);
+    }
+    
+    .audioplayer-playpause,
+    .audioplayer-volume a {
+        -webkit-filter: drop-shadow( 1px 1px 0 #000);
+        -moz-filter: drop-shadow( 1px 1px 0 #000);
+        -ms-filter: drop-shadow( 1px 1px 0 #000);
+        -o-filter: drop-shadow( 1px 1px 0 #000);
+        filter: drop-shadow( 1px 1px 0 #000);
+    }
+    
+    .audioplayer,
+    .audioplayer-volume-adjust {
+        background: -webkit-gradient( linear, left top, left bottom, from( #444), to( #222));
+        background: -webkit-linear-gradient( top, #444, #222);
+        background: -moz-linear-gradient( top, #444, #222);
+        background: -ms-radial-gradient( top, #444, #222);
+        background: -o-linear-gradient( top, #444, #222);
+        background: linear-gradient( to bottom, #444, #222);
+    }
+    
+    .audioplayer-bar-played {
+        background: -webkit-gradient( linear, left top, right top, from( #007fd1), to( #c600ff));
+        background: -webkit-linear-gradient( left, #007fd1, #c600ff);
+        background: -moz-linear-gradient( left, #007fd1, #c600ff);
+        background: -ms-radial-gradient( left, #007fd1, #c600ff);
+        background: -o-linear-gradient( left, #007fd1, #c600ff);
+        background: linear-gradient( to right, #007fd1, #c600ff);
+    }
+    
+    .audioplayer-volume-adjust div div {
+        background: -webkit-gradient( linear, left bottom, left top, from( #007fd1), to( #c600ff));
+        background: -webkit-linear-gradient( bottom, #007fd1, #c600ff);
+        background: -moz-linear-gradient( bottom, #007fd1, #c600ff);
+        background: -ms-radial-gradient( bottom, #007fd1, #c600ff);
+        background: -o-linear-gradient( bottom, #007fd1, #c600ff);
+        background: linear-gradient( to top, #007fd1, #c600ff);
+    }
+    
+    .audioplayer-bar,
+    .audioplayer-bar div,
+    .audioplayer-volume-adjust div {
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+    }
+    
+    .audioplayer {
+        -webkit-border-radius: 2px;
+        -moz-border-radius: 2px;
+        border-radius: 2px;
+    }
+    
+    .audioplayer-volume-adjust {
+        -webkit-border-top-left-radius: 2px;
+        -webkit-border-top-right-radius: 2px;
+        -moz-border-radius-topleft: 2px;
+        -moz-border-radius-topright: 2px;
+        border-top-left-radius: 2px;
+        border-top-right-radius: 2px;
+    }
+    
+    .audioplayer *,
+    .audioplayer *:before,
+    .audioplayer *:after {
+        -webkit-transition: color .25s ease, background-color .25s ease, opacity .5s ease;
+        -moz-transition: color .25s ease, background-color .25s ease, opacity .5s ease;
+        -ms-transition: color .25s ease, background-color .25s ease, opacity .5s ease;
+        -o-transition: color .25s ease, background-color .25s ease, opacity .5s ease;
+        transition: color .25s ease, background-color .25s ease, opacity .5s ease;
+    }
+    /* responsiveness */
+    
+    @media only screen and ( max-width: 32.5em)
+    /* 520 */
+    
+    {
+        body {
+            -webkit-box-shadow: inset 0 0 9.375em rgba( 0, 0, 0, .5);
+            /* 150 */
+            -moz-box-shadow: inset 0 0 9.375em rgba( 0, 0, 0, 5);
+            /* 150 */
+            box-shadow: inset 0 0 9.375em rgba( 0, 0, 0, .5);
+            /* 150 */
+        }
+        #wrapper {
+            width: 100%;
+            height: auto;
+            position: static;
+            padding: 1.25em;
+            /* 20 */
+            margin: 0;
+        }
+    }
+    </style>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="https://v3.bootcss.com/examples/cover/cover.css" rel="stylesheet">
+    <link href="css/1.css" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="./Theme Template for Bootstrap_files/Theme Template for Bootstrap.htm">MY GUITAR</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="./Theme Template for Bootstrap_files/Theme Template for Bootstrap.htm">MY GUITAR</a></li>
+                    <li><a href="../cpts_311_nc/index.htmlindex.html">關於本人</a></li>
+                    <li class="dropdown">
+                        <a href="./Theme Template for Bootstrap_files/Theme Template for Bootstrap.htm" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">菜單 <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../index.htmlindex.html">返回主頁</a></li>
+                            <!-- <li><a href="../index.htmlhw1/index.html">台灣之行</a></li> -->
+                            <li>
+                                <a href="./Theme Template for Bootstrap_files/Theme Template for Bootstrap.htm"></a>
+                            </li>
+                            <li role="separator" class="divider"></li>
+                            <!--<li class="dropdown-header">Nav header</li>
+                            <li><a href="./Theme Template for Bootstrap_files/Theme Template for Bootstrap.htm">Separated link</a></li>
+                            <li><a href="./Theme Template for Bootstrap_files/Theme Template for Bootstrap.htm">One more separated link</a></li>-->
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    </nav>
+    <div class="container-fluid">
+        <h1></h1>
+    </div>
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carousel-example-generic" data-slide-to="0" class=""></li>
+            <li data-target="#carousel-example-generic" data-slide-to="1" class=""></li>
+            <li data-target="#carousel-example-generic" data-slide-to="2" class="active"></li>
+        </ol>
+        <div class="carousel-inner" role="listbox">
+            <div class="item">
+                <img src="images/02.jpeg" class="center-block" data-holder-rendered="true">
+            </div>
+            <div class="item">
+                <img src="images/022.jpeg" class="center-block" data-holder-rendered="true">
+            </div>
+            <div class="item active">
+                <img src="images/023.jpeg" class="center-block" data-holder-rendered="true">
+            </div>
+        </div>
+        <a class="left carousel-control" href="https://v3.bootcss.com/examples/theme/#carousel-example-generic" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="https://v3.bootcss.com/examples/theme/#carousel-example-generic" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <br>
+            <div class="panel panel-warning">
+                <div class="panel-heading">
+                    <h3 class="panel-title">自扒自編之故夢</h3>
+                </div>
+                <div class="panel-body">
+                    <a href="images/1123.pdf" target="_blank">
+                             下載  
+                            </a>完整PDF
+                    <img src="images/1123.png" class="img-responsive center-block" alt="Responsive image">
+                </div>
+            </div>
+            <div class="panel panel-warning">
+                <div class="panel-heading">
+                    <h3 class="panel-title">自扒自編之Tara—DAY BY DAY</h3>
+                </div>
+                <div class="panel-body">
+                    <a href="images/day by day(1).pdf" target="_blank">
+                             下載  
+                            </a>完整PDF
+                    <img src="images/daybyday.png" class="img-responsive center-block" alt="Responsive image">
+                </div>
+            </div>
+            <div class="panel panel-warning">
+                <div class="panel-heading">
+                    <h3 class="panel-title">整合改編完美版之KON—相遇天使</h3>
+                </div>
+                <div class="panel-body">
+                    <a href="images/123.pdf" target="_blank">
+                             下載  
+                            </a>完整PDF
+                    <img src="images/123.png" class="img-responsive center-block" alt="Responsive image">
+                </div>
+            </div>
+            <div class="panel panel-warning">
+                <div class="panel-heading">
+                    <h3 class="panel-title">無名之歌自扒自編</h3>
+                </div>
+                <div class="panel-body">
+                    <a href="images/1234.pdf" target="_blank">
+                             下載  
+                            </a>完整PDF
+                    <img src="images/1234.png" class="img-responsive center-block" alt="Responsive image">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <br>
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">MY GUITAR</h3>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-bordered table-hover">
+                        <tbody>
+                            <tr>
+                                <td>electiric guitar</td>
+                                <td>epiphone les paul standard</td>
+                            </tr>
+                            <tr>
+                                <td>steel guitar</td>
+                                <td>kepma a1c</td>
+                            </tr>
+                            <tr>
+                                <td>GuitarAmp</td>
+                                <td>pevey rage 158</td>
+                            </tr>
+                            <tr>
+                                <td>guitar multi-effects processor</td>
+                                <td>Digitech RP90</td>
+                            </tr>
+                            <tr>
+                                <td>software</td>
+                                <td>guitar pro 6</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <h3 class="panel-title">The certificate</h3>
+                </div>
+                <div class="panel-body">
+                    <img src="images/17.jpg" class="img-responsive" alt="Responsive image">
+                </div>
+            </div>
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h3 class="panel-title">still working on</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%"><span class="sr-only"></span><span>flower dancer</span></div>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%"><span class="sr-only"></span><span>相遇天使</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-info" id="p1">
+                <div class="panel-heading">
+                    <h3 class="panel-title">曾經演奏之歌曲</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="media">
+                        <div class="media-left">
+                            <a href="video/01.mp4" target="_blank">
+                            </a>
+                        </div>
+                        <div class="media-body  audioplayer-novolume ">
+                            <h4 class="media-heading"><p class="text-warning">故夢之gp6<audio preload="none" controls >
+		                  <source src="video/14.mp3" />
+		                  
+	                   </audio></p></h4>
+                        </div>
+                    </div>
+                    <div class="media">
+                        <div class="media-left">
+                            <a href="video/01.mp4" target="_blank">
+                            </a>
+                        </div>
+                        <div class="media-body  audioplayer-novolume ">
+                            <h4 class="media-heading"><p class="text-primary">糰子大家族<audio preload="none" controls >
+		                  <source src="video/01.mp3" />
+		                  
+	                   </audio></p></h4>
+                        </div>
+                    </div>
+                    <div class="media">
+                        <div class="media-left">
+                            <a href="video/02.mp4" target="_blank">
+                            </a>
+                        </div>
+                        <div class="media-body   audioplayer-novolume">
+                            <h4 class="media-heading"><p class="text-success">Kiss the rain<audio preload="none" controls>
+		                  <source src="video/02.mp3" />
+		                  
+	                   </audio></p></h4>
+                        </div>
+                    </div>
+                    <div class="media">
+                        <div class="media-left">
+                            <a href="video/05.mp4" target="_blank">
+                            </a>
+                        </div>
+                        <div class="media-body   audioplayer-novolume">
+                            <h4 class="media-heading"><p class="text-info">綠袖子<audio preload="none" controls>
+		                  <source src="video/05.mp3" />
+		                  
+	                   </audio></p></h4>
+                        </div>
+                    </div>
+                    <div class="media">
+                        <div class="media-left">
+                            <a href="#" target="_blank">
+                            </a>
+                        </div>
+                        <div class="media-body   audioplayer-novolume">
+                            <h4 class="media-heading"><p class="text-warning">卡農<audio preload="none" controls>
+		                  <source src="video/06.mp3" />
+		                  
+	                   </audio></p></h4>
+                        </div>
+                    </div>
+                    <div class="media">
+                        <div class="media-left">
+                            <a href="video/06.mp4" target="_blank">
+                            </a>
+                        </div>
+                        <div class="media-body   audioplayer-novolume">
+                            <h4 class="media-heading"><p class="text-warning">流行的云<audio preload="none" controls>
+		                  <source src="video/03.mp3" />
+		                  
+	                   </audio></p></h4>
+                        </div>
+                    </div>
+                    <div class="media">
+                        <div class="media-left">
+                            <a href="video/04.mp4" target="_blank">
+                            </a>
+                        </div>
+                        <div class="media-body   audioplayer-novolume">
+                            <h4 class="media-heading"><p class="text-primary">Scarborough Fair<audio preload="none" controls>
+		                  <source src="video/04.mp3" />
+		                  
+	                   </audio></p></h4>
+                        </div>
+                    </div>
+                    <div class="media">
+                        <div class="media-left">
+                            <a href="video/07.mp4" target="_blank">
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading   audioplayer-novolume"><p class="text-success">星月神話<audio preload="none" controls>
+		                  <source src="video/07.mp3" />
+		                  
+	                   </audio></p></h4>
+                        </div>
+                    </div>
+                    <div class="media">
+                        <div class="media-left">
+                            <a href="video/08.mp4" target="_blank">
+                            </a>
+                        </div>
+                        <div class="media-body   audioplayer-novolume">
+                            <h4 class="media-heading"><p class="text-info">奇跡的山<audio preload="none" controls>
+		                  <source src="video/08.mp3" />
+		                  
+	                   </audio></p></h4>
+                        </div>
+                    </div>
+                    <div class="media">
+                        <div class="media-left">
+                            <a href="video/09.mp4" target="_blank">
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading   audioplayer-novolume"><p class="text-warning">平凡之路<audio preload="none" controls>
+		                  <source src="video/09.mp3" />
+		                  
+	                   </audio></p></h4>
+                        </div>
+                    </div>
+                    <div class="media">
+                        <div class="media-left">
+                            <a href="video/10.mp4" target="_blank">
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading   audioplayer-novolume"><p class="text-warning">夜空中最亮的星<audio preload="none" controls>
+		                  <source src="video/10.mp3" /></audio>
+		                  
+	                   </audio></p></h4>
+                        </div>
+                    </div>
+                    <div class="media">
+                        <div class="media-left">
+                            <a href="video/11.mp3" target="_blank">
+                            </a>
+                        </div>
+                        <div class="media-body   audioplayer-novolume">
+                            <h4 class="media-heading"><p class="text-primary">
+                            一直很安靜<audio preload="none" controls>
+		                  <source src="video/11.mp3" />
+		                  
+	                   </audio></p></h4>
+                        </div>
+                    </div>
+                    <div class="media">
+                        <div class="media-left">
+                            <a href="video/12.mp4" target="_blank">
+                            </a>
+                        </div>
+                        <div class="media-body   audioplayer-novolume">
+                            <h4 class="media-heading"><p class="text-success">花水月<audio preload="none" controls>
+		                  <source src="video/12.mp3" />
+		                  
+	                   </audio></p></h4>
+                        </div>
+                    </div>
+                    <div class="media">
+                        <div class="media-left">
+                            <a href="video/13.mp4" target="_blank">
+                            </a>
+                        </div>
+                        <div class="media-body   audioplayer-novolume">
+                            <h4 class="media-heading"><p class="text-info">憂傷還是快樂<audio preload="none" controls>
+		                  <source src="video/13.mp3" />
+		                  
+	                   </audio></p></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <h3 class="panel-title">some photos</h3>
+                </div>
+                <div class="panel-body">
+                    <img src="images/11.jpg" class="img-responsive" alt="Responsive image">
+                    <br>
+                    <img src="images/12.jpg" class="img-responsive" alt="Responsive image">
+                    <br>
+                    <img src="images/15.jpg" class="img-responsive" alt="Responsive image">
+                    <br>
+                    <img src="images/16.jpg" class="img-responsive" alt="Responsive image">
+                </div>
+            </div>
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                </div>
+                <div class="panel-body">
+                    <p class="text-info"><a href="http://www.jq22.com/" target="_blank">http://www.jq22.com/<br>
+                            jquery來源</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="./index_files/jquery.min.js"></script>
+    <script src="./index_files/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="./index_files/ie10-viewport-bug-workaround.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/audioplayer.js"></script>
+    <script>
+    $(function() {
+        $('audio').audioPlayer();
+    });
+    </script>
+</body>
+
+</html>

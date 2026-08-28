@@ -1,0 +1,48 @@
+name: Restore original KISSr pages
+on:
+  push:
+    branches: [gaoping-site]
+permissions:
+  contents: write
+jobs:
+  restore:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: gaoping-site
+          fetch-depth: 0
+      - name: Restore original HTML and compatibility fixes
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --location --retry 2 'https://uc1fbf8e2d4664cf10f856830186.dl.dropboxusercontent.com/cd/0/get/DHHGGxyAo9MFQL5jQlzuDRm05s8-spICNVFLDEp_MvlMFqD-rkU7p0nBiOSIPGTj34T1JANmLvkUO64bVsMh9bo4iohOKxKoMvDqdzZSG9JWRqJDWJj696yx7V5fIUw8VCS215hDXw24LPMegkArT9Fp/file?c_luid=ce6b9f05' -o index.html
+          mkdir -p cpts_311_nc ex112
+          curl --fail --location --retry 2 'https://uc2660ff7e7ab0bca460b7c3b5d0.dl.dropboxusercontent.com/cd/0/get/DHFmkPwOzyOwuco8n5xmtoFcNdcVM4M6CDrEx-IbIaVRdEMYlsRiYi3aXCmeb0i37qEsRV16To4NUz3Qi_3UhnBZP5M57momdpM27cIc1UVWYeGA11ntoT1ijut_MMwrQYc_I3GLM7ENJJBZR8s4oBCz/file?c_luid=ce6b9f05' -o cpts_311_nc/index.html
+          curl --fail --location --retry 2 'https://ucc182680a2b93ec140cb5bfe527.dl.dropboxusercontent.com/cd/0/get/DHGxHtSsY8Z6xfAdOpfRkRy81jLzY9bfIFgSnxqUpGlRqBUURhYudhX64uoh8fFkg-_Bli9QpkERVWSLMGz9OC1nx0_ULGpQazym0EQG0Bsw2XE88ZgXlvhjNc3sXanhik_wHByphLqHI4LZVa2pAfLG/file?c_luid=ce6b9f05' -o ex112/index.html
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('index.html')
+          s=p.read_text(errors='replace')
+          s=s.replace('http://gaoping.kissr.com/cpts_311_nc/','cpts_311_nc/index.html').replace('http://gaoping.kissr.com/ex112/','ex112/index.html').replace('http://gaoping.kissr.com','index.html')
+          s=s.replace('https://gaoping.kissr.com/cpts_311_nc/','cpts_311_nc/index.html').replace('https://gaoping.kissr.com/ex112/','ex112/index.html').replace('https://gaoping.kissr.com','index.html')
+          s=s.replace('bootstrap.min.js.%E4%B8%8B%E8%BD%BD','bootstrap.min.js').replace('jquery.min.js.%E4%B8%8B%E8%BD%BD','jquery.min.js').replace('ie-emulation-modes-warning.js.%E4%B8%8B%E8%BD%BD','ie-emulation-modes-warning.js').replace('ie10-viewport-bug-workaround.js.%E4%B8%8B%E8%BD%BD','ie10-viewport-bug-workaround.js')
+          p.write_text(s)
+          for f in ['cpts_311_nc/index.html','ex112/index.html']:
+              p=Path(f); s=p.read_text(errors='replace')
+              s=s.replace('http://gaoping.kissr.com/cpts_311_nc/','../cpts_311_nc/index.html').replace('http://gaoping.kissr.com/ex112/','../ex112/index.html').replace('http://gaoping.kissr.com/','../index.html').replace('http://gaoping.kissr.com','../index.html')
+              s=s.replace('https://gaoping.kissr.com/cpts_311_nc/','../cpts_311_nc/index.html').replace('https://gaoping.kissr.com/ex112/','../ex112/index.html').replace('https://gaoping.kissr.com/','../index.html').replace('https://gaoping.kissr.com','../index.html')
+              s=s.replace('http://cdn.bootcss.com','https://cdn.bootcss.com').replace('http://v3.bootcss.com','https://v3.bootcss.com')
+              p.write_text(s)
+          p=Path('ex112/css/main.css')
+          if p.exists():
+              s=p.read_text(errors='replace').replace('http://fonts.googleapis.com','https://fonts.googleapis.com')
+              p.write_text(s)
+          PY
+          rm -f .github/workflows/restore-original-pages.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Restore original homepage resume and guitar pages'
+          git push origin HEAD:gaoping-site

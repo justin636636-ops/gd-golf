@@ -48,4 +48,4 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 
-# faithful KISSr restoration publish trigger
+# faithful KISSr restoration final publish trigger
